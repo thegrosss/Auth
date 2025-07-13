@@ -1,7 +1,7 @@
 from pydantic import EmailStr
 
 from app.dao.user_dao import UserDAO
-from app.config import verify_password
+from app.core.security import verify_password
 
 async def authentication_user(email: EmailStr, password: str):
     user = await UserDAO.find_one_or_none(email=email)
