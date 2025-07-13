@@ -1,3 +1,5 @@
+from enum import Enum
+
 from pydantic import BaseModel, Field, EmailStr
 import re
 
@@ -15,6 +17,13 @@ class UserSchema(BaseModel):
     is_user: bool = True
     is_student: bool = False
     is_teacher: bool = False
+    is_admin: bool = False
+
+class UserRoles(str, Enum):
+    user = "is_user"
+    student = "is_student"
+    teacher = "is_teacher"
+    admin = "is_admin"
 
 class UserAuth(BaseModel):
     email: EmailStr = Field(description="Электронная почта")
