@@ -8,11 +8,17 @@ class UserModelAdd(BaseModel):
     password: str = Field(min_length=5, max_length=20, description="Пароль, от 3 до 50 символов")
     phone_number: str = Field(description="Номер телефона, начиная с '+'")
 
-class UserModel(UserModelAdd):
+class UserSchema(BaseModel):
     id: int
+    first_name: str = Field(min_length=3, max_length=50, description="Имя, от 3 до 50 символов")
+    last_name: str = Field(min_length=3, max_length=50, description="Фамилия, от 3 до 50 символов")
     is_user: bool = True
     is_student: bool = False
     is_teacher: bool = False
+
+class UserAuth(BaseModel):
+    email: EmailStr = Field(description="Электронная почта")
+    password: str = Field(description="Пароль")
 
 class UserID(BaseModel):
     message : str = "Вы успешно зарегистрировались"

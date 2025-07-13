@@ -5,8 +5,8 @@ from app.users.router import router as users_router
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
-    await delete_tables()
-    print("Таблицы очищены")
+    # await delete_tables()
+    # print("Таблицы очищены")
     await create_tables()
     print("Таблицы созданы")
     yield

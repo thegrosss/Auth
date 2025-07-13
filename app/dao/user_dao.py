@@ -3,9 +3,9 @@ from sqlalchemy import select
 
 from app.users.models import User
 from app.users.schemas import UserModelAdd
-from app.users.auth import get_password_hash
+from app.config import get_password_hash
 
-class BaseDAO:
+class UserDAO:
     @classmethod
     async def get_all_users(cls):
         async with SessionLocal() as session:
@@ -31,5 +31,7 @@ class BaseDAO:
 
             await session.flush()
             await session.commit()
+
+            print(user.password)
 
             return user.id
